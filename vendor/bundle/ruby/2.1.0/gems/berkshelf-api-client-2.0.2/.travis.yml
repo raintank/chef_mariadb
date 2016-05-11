@@ -1,0 +1,13 @@
+sudo: false
+language: ruby
+rvm:
+  - 2.0.0
+  - 2.1
+  - 2.2
+cache: bundler
+addons:
+  apt:
+    packages:
+    - libarchive12
+    - libarchive-dev
+script: bundle exec rake spec

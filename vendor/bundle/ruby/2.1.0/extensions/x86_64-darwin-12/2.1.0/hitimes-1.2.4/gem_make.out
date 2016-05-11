@@ -1,0 +1,17 @@
+/opt/chefdk/embedded/bin/ruby -r ./siteconf20160503-99030-1gd2aan.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling hitimes.c
+compiling hitimes_instant_clock_gettime.c
+compiling hitimes_instant_osx.c
+compiling hitimes_instant_windows.c
+compiling hitimes_interval.c
+compiling hitimes_stats.c
+linking shared-object hitimes/2.1/hitimes.bundle
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 hitimes.bundle ./.gem.20160503-99030-1408glr/hitimes/2.1
+installing default hitimes libraries
