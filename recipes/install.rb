@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: raintank_mariadb
+# Cookbook Name:: chef_mariadb
 # Recipe:: install
 #
 # Copyright (C) 2016 Raintank, Inc.
@@ -39,31 +39,31 @@ connection_info = { :host => "127.0.0.1",
   :password => node['mariadb']['server_root_password']
 }
 
-if node[:raintank_mariadb][:create_database]
+if node[:chef_mariadb][:create_database]
   mysql_database node['grafana']['db_name'] do
     connection connection_info
     action :create
   end
 
-  mysql_database node['raintank_mariadb']['worldping-api']['db_name'] do
+  mysql_database node['chef_mariadb']['worldping-api']['db_name'] do
     connection connection_info
     action :create
   end
 
-  mysql_database node['raintank_mariadb']['task_server']['db_name'] do
+  mysql_database node['chef_mariadb']['task_server']['db_name'] do
     connection connection_info
     action :create
   end
 
-  if !node['raintank_mariadb']['sst_user'].nil?
-    mysql_database_user node['raintank_mariadb']['sst_user'] do
+  if !node['chef_mariadb']['sst_user'].nil?
+    mysql_database_user node['chef_mariadb']['sst_user'] do
       connection connection_info
-      password node['raintank_mariadb']['sst_password']
+      password node['chef_mariadb']['sst_password']
       action :create
     end
-    mysql_database_user node['raintank_mariadb']['sst_user'] do
+    mysql_database_user node['chef_mariadb']['sst_user'] do
       connection connection_info
-      password node['raintank_mariadb']['sst_password']
+      password node['chef_mariadb']['sst_password']
       privileges [ :reload, :"lock tables", :"replication client" ]
       action :grant
     end
@@ -78,51 +78,51 @@ if node[:raintank_mariadb][:create_database]
       connection connection_info
       password node['grafana']['db_password']
       database_name node['grafana']['db_name']
-      host node['raintank_mariadb']['repl_host'] || "localhost"
+      host node['chef_mariadb']['repl_host'] || "localhost"
       privileges [:all]
       action :grant
     end
   end
-  if !node['raintank_mariadb']['repl_user'].nil?
-    mysql_database_user node['raintank_mariadb']['repl_user'] do
+  if !node['chef_mariadb']['repl_user'].nil?
+    mysql_database_user node['chef_mariadb']['repl_user'] do
       connection connection_info
-      password node['raintank_mariadb']['repl_pass']
+      password node['chef_mariadb']['repl_pass']
       action :create
     end
-    mysql_database_user node['raintank_mariadb']['repl_user'] do
+    mysql_database_user node['chef_mariadb']['repl_user'] do
       connection connection_info
-      password node['raintank_mariadb']['repl_pass']
+      password node['chef_mariadb']['repl_pass']
       privileges [ :"replication slave" ]
-      host node['raintank_mariadb']['repl_host']
+      host node['chef_mariadb']['repl_host']
       action :grant
     end
   end
-  if node['raintank_mariadb']['worldping-api']['db_user'] != 'root'
-    mysql_database_user node['raintank_mariadb']['worldping-api']['db_user'] do
+  if node['chef_mariadb']['worldping-api']['db_user'] != 'root'
+    mysql_database_user node['chef_mariadb']['worldping-api']['db_user'] do
       connection connection_info
-      password node['raintank_mariadb']['worldping-api']['db_password']
+      password node['chef_mariadb']['worldping-api']['db_password']
       action :create
     end
-    mysql_database_user node['raintank_mariadb']['worldping-api']['db_user'] do
+    mysql_database_user node['chef_mariadb']['worldping-api']['db_user'] do
       connection connection_info
-      password node['raintank_mariadb']['worldping-api']['db_password']
-      database_name node['raintank_mariadb']['worldping-api']['db_name']
-      host node['raintank_mariadb']['repl_host'] || "localhost"
+      password node['chef_mariadb']['worldping-api']['db_password']
+      database_name node['chef_mariadb']['worldping-api']['db_name']
+      host node['chef_mariadb']['repl_host'] || "localhost"
       privileges [:all]
       action :grant
     end
   end
-  if node['raintank_mariadb']['task_server']['db_user'] != 'root'
-    mysql_database_user node['raintank_mariadb']['task_server']['db_user'] do
+  if node['chef_mariadb']['task_server']['db_user'] != 'root'
+    mysql_database_user node['chef_mariadb']['task_server']['db_user'] do
       connection connection_info
-      password node['raintank_mariadb']['task_server']['db_password']
+      password node['chef_mariadb']['task_server']['db_password']
       action :create
     end
-    mysql_database_user node['raintank_mariadb']['task_server']['db_user'] do
+    mysql_database_user node['chef_mariadb']['task_server']['db_user'] do
       connection connection_info
-      password node['raintank_mariadb']['task_server']['db_password']
-      database_name node['raintank_mariadb']['task_server']['db_name']
-      host node['raintank_mariadb']['repl_host']
+      password node['chef_mariadb']['task_server']['db_password']
+      database_name node['chef_mariadb']['task_server']['db_name']
+      host node['chef_mariadb']['repl_host']
       privileges [:all]
       action :grant
     end

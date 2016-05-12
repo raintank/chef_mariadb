@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: raintank_mariadb
+# Cookbook Name:: chef_mariadb
 # Recipe:: disks
 #
 # Copyright (C) 2016 Raintank, Inc.
@@ -34,10 +34,10 @@ directory "/var/lib/mysql" do
   action :create
 end
 
-unless node[:raintank_base][:is_img_build]
+unless node[:chef_base][:is_img_build]
   include_recipe "lvm"
   lvm_volume_group 'mysql00' do
-    physical_volumes [ node['raintank_mariadb']['mysql_disk'] ]
+    physical_volumes [ node['chef_mariadb']['mysql_disk'] ]
 
     logical_volume 'mysql' do
       size        '100%VG'

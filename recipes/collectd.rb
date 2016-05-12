@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: raintank_mariadb
+# Cookbook Name:: chef_mariadb
 # Recipe:: collectd
 #
 # Copyright (C) 2016 Raintank, Inc.
@@ -19,4 +19,4 @@
 
 package "libdbd-mysql"
 node.set["collectd_personality"] = "mariadb"
-include_recipe "raintank_base::collectd"
+include_recipe "chef_base::collectd"

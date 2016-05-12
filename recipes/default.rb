@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: raintank_mariadb
+# Cookbook Name:: chef_mariadb
 # Recipe:: default
 #
 # Copyright (C) 2016 Raintank, Inc.
@@ -17,6 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "raintank_base::default"
-include_recipe "raintank_mariadb::disks"
-include_recipe "raintank_mariadb::install"
+include_recipe "chef_base::default"
+include_recipe "chef_mariadb::disks"
+include_recipe "chef_mariadb::install"

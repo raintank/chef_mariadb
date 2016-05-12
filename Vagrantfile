@@ -87,8 +87,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     chef.run_list = [
-      'recipe[raintank_mariadb::disks]',
-      'recipe[raintank_mariadb::install]'
+      'recipe[chef_mariadb::disks]',
+      'recipe[chef_mariadb::install]'
     ]
   end
 end
