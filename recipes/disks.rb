@@ -42,14 +42,15 @@ unless node[:chef_base][:is_img_build]
 
     logical_volume 'mysql' do
       size        '100%VG'
-      filesystem  'ext4'
+      filesystem  node["chef_mariadb"]["fs"]["fs_type"]
+      filesystem_params node["chef_mariadb"]["fs_params"]
       stripes     1
     end
   end
   mount '/var/lib/mysql' do
     device '/dev/mapper/mysql00-mysql'
-    fstype 'ext4'
-    options 'noatime,nodiratime'
+    fstype node["chef_mariadb"]["fs"]["fs_type"]
+    options node["chef_mariadb"]["fs"]["fs_opts"]
     action [ :mount, :enable]
   end
 end
