@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@raintank.io'
 license          'Apache 2.0'
 description      'Installs/Configures chef_mariadb'
 long_description 'Installs/Configures chef_mariadb'
-version          '0.1.0'
+version          '0.1.1'
 
 depends 'mariadb', '~> 0.3.0'
 depends 'mysql2_chef_gem', '~> 1.0.0'

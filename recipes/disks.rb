@@ -36,6 +36,7 @@ end
 
 unless node[:chef_base][:is_img_build]
   include_recipe "lvm"
+  include_recipe "chef_base::lvm_attrs"
   lvm_volume_group 'mysql00' do
     physical_volumes [ node['chef_mariadb']['mysql_disk'] ]
 
