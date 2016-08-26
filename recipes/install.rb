@@ -17,6 +17,19 @@
 # limitations under the License.
 #
 
+include_recipe "apt"
+
+apt_repository "percona" do
+  uri "https://repo.percona.com/apt"
+  distribution node["lsb"]["codename"]
+  components [ 'main' ]
+  key '1C4CBDCDCD2EFD2A'
+  keyserver 'keyserver.ubuntu.com'
+  #keyserver 'keys.gnupg.net'
+  action :add
+  deb_src true
+end
+
 node.hostname =~ /(\d+?)/
 s_id = $1 || 1
 node.override[:mariadb][:replication][:server_id] = s_id.to_s
